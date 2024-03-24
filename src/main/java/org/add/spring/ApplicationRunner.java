@@ -1,15 +1,30 @@
 package org.add.spring;
 
 
+import org.add.spring.config.ApplicationConfiguration;
 import org.add.spring.databace.pool.ConnectionPool;
+import org.add.spring.databace.repository.CrudRepository;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.Serializable;
 
 public class ApplicationRunner {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("application.xml");
+        String value = "hello";
+        System.out.println(CharSequence.class.isAssignableFrom(value.getClass()));
+        System.out.println(BeanFactoryPostProcessor.class.isAssignableFrom(value.getClass()));
+        System.out.println(Serializable.class.isAssignableFrom(value.getClass()));
+        try(var context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class)){
+            //clazz -> String -> Map<String, Object>
 
-        ConnectionPool connectionPool = context.getBean("p1", ConnectionPool.class);
-        System.out.println(connectionPool);
+            ConnectionPool connectionPool = context.getBean("p1", ConnectionPool.class);
+            System.out.println(connectionPool);
+
+            var companyRepository = context.getBean("companyRepository", CrudRepository.class);
+            System.out.println(companyRepository.findById(1));
+
+        }
     }
 }

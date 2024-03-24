@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/util
        https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:component
+
 
 
     <bean id="driver" class="java.lang.String">
