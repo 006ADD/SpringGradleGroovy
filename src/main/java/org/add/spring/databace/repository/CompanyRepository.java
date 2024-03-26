@@ -1,6 +1,7 @@
 package org.add.spring.databace.repository;
 
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.add.spring.bpp.Auditing;
 import org.add.spring.bpp.InjectBean;
 import org.add.spring.bpp.Transaction;
@@ -15,20 +16,16 @@ import java.util.Optional;
 
 @Repository
 @Auditing
+@RequiredArgsConstructor
 @Transaction
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
     private final ConnectionPool pool1;
     private final List<ConnectionPool> pools;
+    @Value("${db.pool.saze}")
     private final Integer poolSize;
 
-    public CompanyRepository(ConnectionPool pool1,
-                             List<ConnectionPool> pools,
-                             @Value("${db.pool.saze}") Integer poolSize) {
-        this.pool1 = pool1;
-        this.pools = pools;
-        this.poolSize = poolSize;
-    }
+
 
     @PostConstruct
     public void init(){

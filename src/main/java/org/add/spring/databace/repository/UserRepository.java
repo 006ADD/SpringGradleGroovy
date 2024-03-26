@@ -1,5 +1,6 @@
 package org.add.spring.databace.repository;
 
+import lombok.RequiredArgsConstructor;
 import org.add.spring.databace.pool.ConnectionPool;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -8,10 +9,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@RequiredArgsConstructor
 public class UserRepository {
+    @Qualifier("pool2")
     private final ConnectionPool connectionPool;
 
-    public UserRepository(@Qualifier("pool2") ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
 }

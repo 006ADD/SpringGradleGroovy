@@ -1,31 +1,15 @@
 package org.add.spring;
 
 
-import org.add.spring.config.ApplicationConfiguration;
-import org.add.spring.databace.pool.ConnectionPool;
-import org.add.spring.databace.repository.CrudRepository;
-import org.add.spring.service.CompanyService;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
-import java.io.Serializable;
-
+@SpringBootApplication
+@ConfigurationPropertiesScan
 public class ApplicationRunner {
     public static void main(String[] args) {
-        String value = "hello";
-        System.out.println(CharSequence.class.isAssignableFrom(value.getClass()));
-        System.out.println(BeanFactoryPostProcessor.class.isAssignableFrom(value.getClass()));
-        System.out.println(Serializable.class.isAssignableFrom(value.getClass()));
-        try(var context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class)){
-            //clazz -> String -> Map<String, Object>
-
-            ConnectionPool connectionPool = context.getBean("pool1", ConnectionPool.class);
-            System.out.println(connectionPool);
-
-            var companyService = context.getBean(CompanyService.class);
-            System.out.println(companyService.findById(1));
-
-        }
+        var context = SpringApplication.run(ApplicationRunner.class, args);
+        System.out.println(context.getBeanDefinitionCount());
     }
 }

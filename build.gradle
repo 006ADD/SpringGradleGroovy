@@ -1,5 +1,8 @@
  plugins {
     id 'java'
+     id 'org.springframework.boot' version '3.2.0'
+     id 'io.spring.dependency-management' version '1.1.4'
+     id "io.freefair.lombok" version "8.6"
 }
 
 group = 'org.example'
@@ -10,16 +13,16 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.springframework/spring-core
-    implementation group: 'org.springframework', name: 'spring-core', version: '6.1.5'
-    // https://mvnrepository.com/artifact/org.springframework/spring-context
-    implementation group: 'org.springframework', name: 'spring-context', version: '6.1.5'
-    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
-    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.1.0-M2'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '3.2.4'
+
 // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
     implementation group: 'jakarta.annotation', name: 'jakarta.annotation-api', version: '3.0.0-M1'
 // https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api
     implementation group: 'jakarta.inject', name: 'jakarta.inject-api', version: '2.0.1'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.3'
+
 
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
