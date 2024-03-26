@@ -2,6 +2,7 @@ package org.add.spring.databace.repository;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.add.spring.bpp.Auditing;
 import org.add.spring.bpp.InjectBean;
 import org.add.spring.bpp.Transaction;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @Auditing
 @RequiredArgsConstructor
 @Transaction
+@Slf4j
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
     private final ConnectionPool pool1;
@@ -29,7 +31,7 @@ public class CompanyRepository implements CrudRepository<Integer, Company> {
 
     @PostConstruct
     public void init(){
-        System.out.println("Init Company repository");
+        log.info("Init Company repository");
     }
     @Override
     public Optional<Company> findById(Integer id) {
