@@ -1,7 +1,8 @@
 package org.add.spring.service;
 
-import org.add.spring.databace.entity.Company;
-import org.add.spring.databace.repository.CrudRepository;
+import org.add.spring.database.entity.Company;
+import org.add.spring.database.repository.CompanyRepository;
+
 import org.add.spring.dto.CompanyReadDto;
 import org.add.spring.listener.entity.EntityEvent;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 class CompanyServiceTest {
     private static final Integer COMPANY_ID=1;
     @Mock
-    private CrudRepository<Integer, Company> companyCrudRepository;
+    private CompanyRepository companyCrudRepository;
     @Mock
     private UserService userService;
     @Mock

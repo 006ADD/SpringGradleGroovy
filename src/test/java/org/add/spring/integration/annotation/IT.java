@@ -1,5 +1,8 @@
 package org.add.spring.integration.annotation;
 
+import org.add.spring.integration.TestApplicationRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.annotation.ElementType;
@@ -9,8 +12,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 @Transactional
-
+@SpringBootTest(classes = TestApplicationRunner.class)
 public @interface IT {
 }

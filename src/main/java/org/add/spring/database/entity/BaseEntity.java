@@ -1,4 +1,4 @@
-package org.add.spring.databace.entity;
+package org.add.spring.database.entity;
 
 import java.io.Serializable;
 
