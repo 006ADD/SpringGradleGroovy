@@ -19,6 +19,7 @@ logging:
   level:
     root: WARN
     com.add.spring.database.pool: INFO
+    org.springframework.jdbc.core: TRACE
   file:
     name: add.log
     path: /
