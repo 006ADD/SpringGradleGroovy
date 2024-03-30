@@ -4,6 +4,7 @@
      id 'io.spring.dependency-management' version '1.1.4'
      id "io.freefair.lombok" version "8.6"
 }
+ apply from: 'version.gradle'
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
@@ -12,14 +13,14 @@ repositories {
     mavenCentral()
 }
 
-// querydsl {
-//     jpa = true
-////     querydslSourcesDir = "$buildDir/generated/sources/annotationProcessor/java/main"
-// }
-//
-// compileQuerydsl {
-//     options.annotationProcessorPath = configurations.querydsl
-// }
+ querydsl {
+     jpa = true
+//     querydslSourcesDir = "$buildDir/generated/sources/annotationProcessor/java/main"
+ }
+
+ compileQuerydsl {
+     options.annotationProcessorPath = configurations.querydsl
+ }
 
 dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
@@ -39,6 +40,10 @@ dependencies {
     implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.1.0'
 // https://mvnrepository.com/artifact/com.querydsl/querydsl-apt
     implementation group: 'com.querydsl', name: 'querydsl-apt', version: '5.1.0'
+// https://mvnrepository.com/artifact/com.h2database/h2
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.2.224'
+
+    testImplementation "org.testcontainers:postgresql:${versions.testcontainers}"
 
 
 
@@ -47,6 +52,15 @@ dependencies {
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '3.2.4'
 
 }
+ querydsl {
+     jpa = true
+     library = "com.querydsl:querydsl-apt:${versions.querydsl}"
+     querydslSourcesDir = "$buildDir/generated/sources/annotationProcessor/java/main"
+ }
+
+ compileQuerydsl {
+     options.annotationProcessorPath = configurations.querydsl
+ }
 
 test {
     useJUnitPlatform()
